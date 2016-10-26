@@ -66,7 +66,7 @@ public class roomExcel{
                 //if the row is not the first row then,
                 //insert the data in database
                 if(firstrow!=0){
-                    dbConnection db= new dbConnection();
+                    dbConnection db= new dbConnection("jdbc:mysql://localhost:3306/database_lab1","root","password");
                     //sql comment
                     String insert = "INSERT INTO room  VALUES (?,?,?,?,?,?);";
                     PreparedStatement ps=db.getConnection().prepareStatement(insert);//createStatement().executeUpdate(insert);

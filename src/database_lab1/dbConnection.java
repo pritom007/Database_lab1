@@ -17,9 +17,16 @@ public class dbConnection {
    /*
     *setting up connection for database
     */
-    static String connectionUrl = "jdbc:mysql://localhost:3306/database_lab1";
-    static String username = "root";
-    static String Password = "password";
+     String connectionUrl = "jdbc:mysql://localhost:3306/database_lab1";
+     String username = "root";
+     String Password = "password";
+    public dbConnection(String connectionUrl,String username,String password){
+        this.connectionUrl=connectionUrl;
+        this.username=username;
+        this.Password=password;
+    }
+    
+    
     static Connection con;
     public  Connection getConnection() {
         try {

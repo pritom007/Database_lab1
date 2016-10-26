@@ -53,7 +53,7 @@ public class studentExcel {
                 }
                 System.out.println();
                 if(firstrow!=0){    
-                    dbConnection db= new dbConnection();
+                    dbConnection db= new dbConnection("jdbc:mysql://localhost:3306/database_lab1","root","password");
                     String insert = "INSERT INTO student  VALUES (?,?,?,?,?,?);";
                     PreparedStatement ps=db.getConnection().prepareStatement(insert);//createStatement().executeUpdate(insert);
                     ps.setString(1, cellStoreVector.get(0));

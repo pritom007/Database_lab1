@@ -18,12 +18,14 @@ public class Database_lab1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException {
-       dbConnection db= new dbConnection();
-       db.getConnection();
+       
+       
        roomExcel rx= new roomExcel();
        //rx.roomExcelFile("F:\\fudan 5th semester\\Database\\lab\\data\\room.xls");
        studentExcel ex= new studentExcel();
-       ex.studentExcelFile("F:\\fudan 5th semester\\Database\\lab\\data\\student.xls");
+       //ex.studentExcelFile("F:\\fudan 5th semester\\Database\\lab\\data\\student.xls");
+       accessFile af= new accessFile();
+       af.roomAccess();
     }
     
 }
