@@ -5,6 +5,7 @@
  */
 package database_lab1;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -26,21 +27,23 @@ import java.util.Vector;
  *
  * @author PritomKumar
  */
-public class roomExcel{
+public class ExcelToMySQL{
    /*
     *method takes input of file name and takes the data from excel file
     *after taking input connects to database and put the data there
     */
-    public void roomExcelFile(String filename) throws IOException, SQLException{
+    public void ExcelFileReader(String filename) throws IOException, SQLException{
         FileInputStream fis = null;
         try {
  
             fis = new FileInputStream(filename);
+            String queryValue=(new File(filename).getName().replaceAll("(.xls)", ""));
+            //System.out.println((new File(filename).getName().replaceAll("(.xls)", "")));
             HSSFWorkbook workbook = new HSSFWorkbook(fis);
             HSSFSheet sheet = workbook.getSheetAt(0);
             Iterator rowIter = sheet.rowIterator(); 
             //variable that will use to find the first row
-            int firstrow=0;
+            int firstrow=0,maxColumn=0;
             //iterator for the row values 
             while(rowIter.hasNext()){
                 HSSFRow myRow = (HSSFRow) rowIter.next();
@@ -65,21 +68,22 @@ public class roomExcel{
                 System.out.println();
                 //if the row is not the first row then,
                 //insert the data in database
+                
                 if(firstrow!=0){
                     dbConnection db= new dbConnection("jdbc:mysql://localhost:3306/database_lab1","root","password");
                     //sql comment
-                    String insert = "INSERT INTO room  VALUES (?,?,?,?,?,?);";
+                    String insert = "INSERT INTO "+queryValue+" VALUES (?,?,?,?,?,?);";
                     PreparedStatement ps=db.getConnection().prepareStatement(insert);//createStatement().executeUpdate(insert);
-                    ps.setString(1, cellStoreVector.get(0));
-                    ps.setString(2, cellStoreVector.get(1));
-                    ps.setString(3, cellStoreVector.get(2));
-                    ps.setString(4, cellStoreVector.get(3));
-                    ps.setString(5, cellStoreVector.get(4));
-                    ps.setString(6, "");
-                    Boolean rs=ps.execute();
+                    for(int i=1;i<=cellStoreVector.size();i++){
+                    ps.setString(i, cellStoreVector.get(i-1));
+                    }
+                    ps.execute();
+                    
                 }
                 firstrow++;
             }
+                        
+                        
         } catch (IOException e) {
  
             e.printStackTrace();
@@ -90,5 +94,6 @@ public class roomExcel{
             }
         }
     }
+    
 }
 

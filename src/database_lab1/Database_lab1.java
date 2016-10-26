@@ -21,12 +21,22 @@ public class Database_lab1 {
     public static void main(String[] args) throws IOException, SQLException {
        
        
-       roomExcel rx= new roomExcel();
-       //rx.roomExcelFile("F:\\fudan 5th semester\\Database\\lab\\data\\room.xls");
-       studentExcel ex= new studentExcel();
-       //ex.studentExcelFile("F:\\fudan 5th semester\\Database\\lab\\data\\student.xls");
+       ExcelToMySQL excelToSQL= new ExcelToMySQL();
+       //give the filepath as input
+       //room.xls file
+       excelToSQL.ExcelFileReader("F:\\fudan 5th semester\\Database\\lab\\data\\room.xls");
+       //student.xls file
+       excelToSQL.ExcelFileReader("F:\\fudan 5th semester\\Database\\lab\\data\\student.xls");
+       
        accessFile af= new accessFile();
-       af.studentAccess("F:\\fudan 5th semester\\Database\\lab\\data\\access db\\oralexam.accdb");
+       System.out.println("--------Access file is going to be prossed----------");
+       System.out.println("--------Table room is going to be inserted in mysql----------");
+       //file path as input
+       //af.roomAccess("F:\\fudan 5th semester\\Database\\lab\\data\\access db\\oralexam.accdb");
+       
+       System.out.println("--------Table student is going to be inserted in mysql----------");
+       //file path as input
+       //af.studentAccess("F:\\fudan 5th semester\\Database\\lab\\data\\access db\\oralexam.accdb");
     }
     
 }
