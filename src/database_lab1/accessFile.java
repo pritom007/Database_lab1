@@ -19,22 +19,19 @@ import java.sql.*;
  */
 public class accessFile {
     
-    public void roomAccess() throws IOException{
+    
+    //input the file path
+    //example: 'C:\\oralexam.accdb'
+    public void roomAccess(String filePath) throws IOException{
         try {
-        
-           
-        // Load MS accces driver class
-        //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-        
-        // C:\\databaseFileName.accdb" - location of your database 
-       // String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=" + "F:\\fudan 5th semester\\Database\\lab\\data\\access db\\oralexam.accdb";
-        
         // specify url, username, pasword - make sure these are valid 
-        Connection conn = DriverManager.getConnection("jdbc:ucanaccess://F:\\fudan 5th semester\\Database\\lab\\data\\access db\\oralexam.accdb");
+        //Need 'ucanaccess.rar' to run this
+        Connection conn = DriverManager.getConnection("jdbc:ucanaccess://"+filePath);
         Statement st= conn.createStatement();
         ResultSet rs=st.executeQuery("select * from room");
+        //connecting to MySQL
         dbConnection db= new dbConnection("jdbc:mysql://localhost:3306/database_lab1_access","root","password");
-        //sql comment
+        //sql command
         String insert = "INSERT INTO room  VALUES (?,?,?,?,?,?);";
         while(rs.next()){
         PreparedStatement ps=db.getConnection().prepareStatement(insert);
@@ -45,8 +42,7 @@ public class accessFile {
         ps.setString(5, rs.getString(5));
         ps.setString(6, rs.getString(6));
         
-        System.out.println(rs.getString("kdno")+" "+rs.getString("kcno")+" "+rs.getString("ccno")+" "+rs.getString("kdname")+" "+rs.getString("exptime")+" "+rs.getString("papername")+ " hoise");
-        System.out.println(rs.getType());
+        System.out.println(rs.getString("kdno")+" "+rs.getString("kcno")+" "+rs.getString("ccno")+" "+rs.getString("kdname")+" "+rs.getString("exptime")+" "+rs.getString("papername"));
         ps.execute();
         }
         
@@ -57,4 +53,36 @@ public class accessFile {
         System.err.println(e.getMessage());
         }
     }
+    public void studentAccess(String filePath) throws IOException{
+        try {
+        // specify url, username, pasword - make sure these are valid 
+        //Need 'ucanaccess.rar' to run this
+        Connection conn = DriverManager.getConnection("jdbc:ucanaccess://"+filePath);
+        Statement st= conn.createStatement();
+        ResultSet rs=st.executeQuery("select * from student");
+        //connecting to MySQL
+        dbConnection db= new dbConnection("jdbc:mysql://localhost:3306/database_lab1_access","root","password");
+        //sql command
+        String insert = "INSERT INTO student  VALUES (?,?,?,?,?,?);";
+        while(rs.next()){
+        PreparedStatement ps=db.getConnection().prepareStatement(insert);
+        ps.setString(1, rs.getString(1));
+        ps.setString(2, rs.getString(2));
+        ps.setString(3, rs.getString(3));
+        ps.setInt(4, rs.getInt(4));
+        ps.setInt(5, rs.getInt(5));
+        ps.setInt(6, rs.getInt(6));
+        
+        System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getInt(4)+" "+rs.getInt(5)+" "+rs.getInt(6));
+        ps.execute();
+        }
+        
+        System.out.println("Connection Succesfull");
+        } catch (Exception e) {
+            e.printStackTrace();
+        System.err.println("Got an exception! ");
+        System.err.println(e.getMessage());
+        }
+    }
+    
 }

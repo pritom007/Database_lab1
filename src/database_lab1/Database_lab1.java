@@ -5,6 +5,7 @@
  */
 package database_lab1;
 
+import com.healthmarketscience.jackcess.Database;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -25,7 +26,7 @@ public class Database_lab1 {
        studentExcel ex= new studentExcel();
        //ex.studentExcelFile("F:\\fudan 5th semester\\Database\\lab\\data\\student.xls");
        accessFile af= new accessFile();
-       af.roomAccess();
+       af.studentAccess("F:\\fudan 5th semester\\Database\\lab\\data\\access db\\oralexam.accdb");
     }
     
 }
