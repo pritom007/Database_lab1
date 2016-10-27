@@ -21,16 +21,12 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  * @author PritomKumar
  */
 public class studentExcel {
-
- 
         //String filename = "C:\\bugs reported.xls";
         FileInputStream fis = null;
         
     public void studentExcelFile(String filename) throws IOException, SQLException{
         FileInputStream fis = null;
- 
         try {
- 
             fis = new FileInputStream(filename);
             HSSFWorkbook workbook = new HSSFWorkbook(fis);
             HSSFSheet sheet = workbook.getSheetAt(0);

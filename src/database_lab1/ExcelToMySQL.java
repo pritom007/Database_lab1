@@ -5,24 +5,16 @@
  */
 package database_lab1;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFCell;
+import java.io.*;
+import org.apache.poi.hssf.*;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Vector;
+import java.sql.*;
+import java.util.*;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 /**
  *
  * @author PritomKumar
@@ -34,11 +26,16 @@ public class ExcelToMySQL{
     */
     public void ExcelFileReader(String filename) throws IOException, SQLException{
         FileInputStream fis = null;
+        Scanner sc = new Scanner(System.in);
         try {
- 
             fis = new FileInputStream(filename);
             String queryValue=(new File(filename).getName().replaceAll("(.xls)", ""));
-            //System.out.println((new File(filename).getName().replaceAll("(.xls)", "")));
+            System.out.print("Please input the schema name:");
+            String schemaName=sc.next();
+            System.out.print("Please input the database username:");
+            String userName=sc.next();
+            System.out.print("Please input the database password:");
+            String password=sc.next();
             HSSFWorkbook workbook = new HSSFWorkbook(fis);
             HSSFSheet sheet = workbook.getSheetAt(0);
             Iterator rowIter = sheet.rowIterator(); 
@@ -54,7 +51,6 @@ public class ExcelToMySQL{
                     String cellvalue;
                     
                     //determines if cell value is string or numaric
-                    
                     if(myCell.getCellType()==1)
                         cellvalue = myCell.getStringCellValue();
                     else
@@ -68,26 +64,21 @@ public class ExcelToMySQL{
                 System.out.println();
                 //if the row is not the first row then,
                 //insert the data in database
-                
                 if(firstrow!=0){
-                    dbConnection db= new dbConnection("jdbc:mysql://localhost:3306/database_lab1","root","password");
+                    dbConnection db= new dbConnection("jdbc:mysql://localhost:3306/"+schemaName,userName,password);
                     //sql comment
                     String insert = "INSERT INTO "+queryValue+" VALUES (?,?,?,?,?,?);";
                     PreparedStatement ps=db.getConnection().prepareStatement(insert);//createStatement().executeUpdate(insert);
                     for(int i=1;i<=cellStoreVector.size();i++){
                     ps.setString(i, cellStoreVector.get(i-1));
                     }
+                    //executing the sql command
                     ps.execute();
-                    
                 }
                 firstrow++;
             }
-                        
-                        
         } catch (IOException e) {
- 
             e.printStackTrace();
- 
         } finally {
             if (fis != null) {
                 fis.close();
