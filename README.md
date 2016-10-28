@@ -1,4 +1,4 @@
-# Excel-Access-Data-To-MySQL-Database-
+# Excel-Access-Data-To-MySQL-Database
 A simple program to extort excel and access data to MySQL database
 
 #File Description
@@ -16,9 +16,59 @@ In order to run this program you need to download some .jar files.Most important
 ![download_jar image](downloads.png "This files needed to download")
 
 
-*Note that all these files need to up to date.*
+*Note that all these files needed to be up to date.*
 
 #How to Run
+
+Before you run the program you need to setup **MySQL Workbench** .
+Need to add a new schema (For ex. database_lab1) . Then need add tables. For this program you need to add two tables and they should be named "room" and "student".
+**room** table should have 6 columns.
+The columns should be named as:
+
+**room** Table
+
+kdno  kcno  ccno  kdname  exptime  papername
+----  ----  ----  ------  -------  ---------
+
+----------- --------------------
+column name   type
+----------- --------------------
+kdno        VARCHAR(10)
+
+kcno        INT
+
+ccno        INT
+
+kdname      VARCHAR(45)
+
+exptime     VARCHAR(45)
+
+papername   VARCHAR(45)
+--------  -----------------------
+
+**student** Table
+
+registno  name  kdno  kcno  ccno  seat
+--------  ----  ----  ----  ----  -----
+
+----------- --------------------
+column name   type
+----------- --------------------
+registno    VARCHAR(10)
+
+name        VARCHAR(40)
+
+kdno        VARCHAR(10)
+
+kcno        INT
+
+ccno        INT
+
+seat        INT
+--------  -----------------------
+
+
+
 
 
 
