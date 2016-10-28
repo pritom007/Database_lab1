@@ -26,13 +26,9 @@ Need to add a new schema (For ex. database_lab1) . Then need add tables. For thi
 The columns should be named as:
 
 **room** Table
+  
+    # kdno kcno ccno kdname exptime papername
 
-|-----|-----|-----|------|-------|---------|
- kdno |kcno |ccno |kdname|exptime|papername|
-|-----|-----|-----|------|-------|---------|
-
-
------------ --------------------
 column name   type
 ----------- --------------------
 kdno          VARCHAR(10)
@@ -46,32 +42,26 @@ kdname        VARCHAR(45)
 exptime       VARCHAR(45)
 
 papername     VARCHAR(45)
--------- --------------------
 
-***
 
 **student** Table
+  
+    # registno name kdno kcno ccno seat
 
---------|------|-----|-----|-----|-----|
-registno| name |kdno | kcno| ccno| seat|
---------|------|-----|-----|-----|-----|
+column_name           type
+-----------           --------------------
+registno              VARCHAR(10)
 
+name                  VARCHAR(40)
 
------------ --------------------
-column name type
------------ --------------------
-registno            VARCHAR(10)
+kdno                  VARCHAR(10)
 
-name                VARCHAR(40)
+kcno                  INT
 
-kdno                VARCHAR(10)
+ccno                  INT
 
-kcno                INT
+seat                  INT
 
-ccno                INT
-
-seat                INT
--------- ---------------------
 
 *Note : Similar steps should be followed for access file data*
 
@@ -87,6 +77,9 @@ Ones you are done with the MySQL settings you can follow the following steps to 
         
 #Input and Output
 
+After you run the program, the first thing will appear is the options. Like the picture below:
+
+![options](options.png "Choose the options")
 
 
 
