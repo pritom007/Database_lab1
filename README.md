@@ -30,6 +30,8 @@ The columns should be named as:
 kdno  kcno  ccno  kdname  exptime  papername
 ----  ----  ----  ------  -------  ---------
 
+(Should look like this)
+
 ----------- --------------------
 column name   type
 ----------- --------------------
@@ -48,25 +50,30 @@ papername   VARCHAR(45)
 
 **student** Table
 
-registno  name  kdno  kcno  ccno  seat
---------  ----  ----  ----  ----  -----
+registno   name  kdno  kcno  ccno  seat
+--------   ----  ----  ----  ----  -----
 
------------ --------------------
-column name   type
------------ --------------------
-registno    VARCHAR(10)
 
-name        VARCHAR(40)
+(Should look like this)
+-----------         --------------------
+column name         type
+-----------         --------------------
+registno            VARCHAR(10)
 
-kdno        VARCHAR(10)
+name                VARCHAR(40)
 
-kcno        INT
+kdno                VARCHAR(10)
 
-ccno        INT
+kcno                INT
 
-seat        INT
---------  -----------------------
+ccno                INT
 
+seat                INT
+--------            ---------------------
+
+*Note : Similar steps should be followed for access file data*
+
+Ones you are done with the MySQL settings you can follow the following steps to run the program. There are
 
 
 
