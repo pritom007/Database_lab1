@@ -81,7 +81,7 @@ After you run the program, the first thing will appear is the options. Like the 
 
 ![options](options.png "Choose the options")
 
-Actions for the options:
+**Actions for the options:**
  
  1. If you choose option 1 first system will ask for the filepath of 'room.xls' file. Then it will ask for the schema name. After that you need to input the username and password of the database. After you give the inputs if no error found then data would appear in the console. after action finishes data will also be available in the database.
  
@@ -91,7 +91,8 @@ Actions for the options:
  2. Same as option 1. But file should be 'student.xls'
  
  3. If you choose option 3 first system will ask for the filepath of 'oralexam.accdb' file. Then it will ask for the schema name. After that you need to input the username and password of the database. After you give the inputs if no error found then data would appear in the console. after action finishes data will also be available in the database.
- * Note this instruction is for 'room' table *
+ 
+ *Note this instruction is for 'room' table*
  
  ![option3&4](option3&4.png "Choose the options")
  
